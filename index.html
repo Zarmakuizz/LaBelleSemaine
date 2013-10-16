@@ -20,6 +20,31 @@
 </style>
 <script>
 $(function() {
+    function randomize(divName)
+    {
+    var $container = $("#"+divName);
+    
+    $container.html(shuffle($container.children().get()));
+    
+    function shuffle(o){
+        for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+        return o;
+    };
+    }
+
+function init() {
+    randomize("unsorted_days");
+}
+
+function reset() {
+    window.location.reload();
+    //randomize("unsorted_days");
+    //reset_drag();
+}
+        init();
+
+
+
         $( "#drag_monday" ).draggable({ revert: "invalid"});
         $( "#drag_tuesday" ).draggable({ revert: "invalid" });
         $( "#drag_wednesday" ).draggable({ revert: "invalid" });
@@ -54,13 +79,14 @@ $(function() {
                 "top": $("#drag_sunday").data("top")});
         };
 
+
 function drop_check(event, ui) {
     var dropId = $(this).attr("id");
     var dragId = ui.draggable.attr("id");
     if(++correct_days == 7) {
         alert("C'est gagné");
         correct_days = 0;
-        reset_drag();
+        reset();
     };
 
 };

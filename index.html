@@ -11,6 +11,7 @@
 <script src="jquery_ui/ui/jquery.ui.draggable.js"></script>
 <script src="jquery_ui/ui/jquery.ui.droppable.js"></script>
 <link rel="stylesheet" href="jquery_ui/demos/demos.css">
+<link rel="stylesheet" href="style.css">
 <style>
 #drag_monday, #drag_tuesday, #drag_wednesday, #drag_thursday, #drag_friday,
 #drag_saturday, #drag_sunday { width: 100px; height: 100px; padding: 0.5em;  margin: 10px 10px 10px 0; }
@@ -27,105 +28,150 @@ $(function() {
         $( "#drag_saturday" ).draggable({ revert: "invalid" });
         $( "#drag_sunday" ).draggable({ revert: "invalid" });
 
-        $( "#drop_monday" ).droppable({
+        var correct_days = 0;
+
+        // Store original position
+        $(".ui-widget-content").data("left", $(".ui-widget-content").position().left).data("top", $(".ui-widget-content").position().top);
+
+        /**
+         * Put back all dragged element to their original position
+         **/
+        function reset_drag() 
+        {
+        $("#drag_monday").animate({"left": $("drag_monday").data("left"), 
+            "top": $("#drag_monday").data("top")});
+        $("#drag_tuesday").animate({"left": $("drag_tuesday").data("left"), 
+                "top": $("#drag_tuesday").data("top")});
+        $("#drag_wednesday").animate({"left": $("drag_wednesday").data("left"), 
+                "top": $("#drag_wednesday").data("top")});
+        $("#drag_thursday").animate({"left": $("drag_thursday").data("left"), 
+                "top": $("#drag_thursday").data("top")});
+        $("#drag_friday").animate({"left": $("drag_friday").data("left"), 
+                "top": $("#drag_friday").data("top")});
+        $("#drag_saturday").animate({"left": $("drag_saturday").data("left"), 
+                "top": $("#drag_saturday").data("top")});
+        $("#drag_sunday").animate({"left": $("drag_sunday").data("left"), 
+                "top": $("#drag_sunday").data("top")});
+        };
+
+function drop_check(event, ui) {
+    var dropId = $(this).attr("id");
+    var dragId = ui.draggable.attr("id");
+    if(++correct_days == 7) {
+        alert("C'est gagné");
+        correct_days = 0;
+        reset_drag();
+    };
+
+};
+
+$( "#drop_monday" ).droppable({
 accept:"#drag_monday",
 activeClass: "ui-state-hover",
-hoverClass: "ui-state-active"
+hoverClass: "ui-state-active",
+drop: drop_check
 });
-        $( "#drop_tuesday" ).droppable({
+$( "#drop_tuesday" ).droppable({
 accept:"#drag_tuesday",
 activeClass: "ui-state-hover",
-hoverClass: "ui-state-active"
+hoverClass: "ui-state-active",
+drop: drop_check
 });
 $( "#drop_wednesday" ).droppable({
 accept:"#drag_wednesday",
 activeClass: "ui-state-hover",
-hoverClass: "ui-state-active"
+hoverClass: "ui-state-active",
+drop: drop_check
 });
 $( "#drop_thursday" ).droppable({
 accept:"#drag_thursday",
 activeClass: "ui-state-hover",
-hoverClass: "ui-state-active"
+hoverClass: "ui-state-active",
+drop: drop_check
 });
 $( "#drop_friday" ).droppable({
 accept:"#drag_friday",
 activeClass: "ui-state-hover",
-hoverClass: "ui-state-active"
+hoverClass: "ui-state-active",
+drop: drop_check
 });
 $( "#drop_saturday" ).droppable({
 accept:"#drag_saturday",
 activeClass: "ui-state-hover",
-hoverClass: "ui-state-active"
+hoverClass: "ui-state-active",
+drop: drop_check
 });
 $( "#drop_sunday" ).droppable({
 accept:"#drag_sunday",
 activeClass: "ui-state-hover",
-hoverClass: "ui-state-active"
+hoverClass: "ui-state-active",
+drop: drop_check
 });
 });
 </script>
 </head>
 <body>
 
-<div id="drag_monday" class="ui-widget-content" style="background:rgb(100,100,
-    23)">
-    <p>Lundi</p>
-    </div>
+<div id="game">
+<div id="unsorted_days">
+<div id="drag_monday" class="ui-widget-content">
+<p>Lundi</p>
+</div>
 
-    <div id="drag_tuesday" class="ui-widget-content">
-    <p>Mardi</p>
-    </div>
+<div id="drag_tuesday" class="ui-widget-content">
+<p>Mardi</p>
+</div>
 
-    <div id="drag_wednesday" class="ui-widget-content">
-    <p>Mercredi</p>
-    </div>
+<div id="drag_wednesday" class="ui-widget-content">
+<p>Mercredi</p>
+</div>
 
-    <div id="drag_thursday" class="ui-widget-content">
-    <p>Jeudi</p>
-    </div>
+<div id="drag_thursday" class="ui-widget-content">
+<p>Jeudi</p>
+</div>
 
-    <div id="drag_friday" class="ui-widget-content">
-    <p>Vendredi</p>
-    </div>
+<div id="drag_friday" class="ui-widget-content">
+<p>Vendredi</p>
+</div>
 
-    <div id="drag_saturday" class="ui-widget-content">
-    <p>Samedi</p>
-    </div>
+<div id="drag_saturday" class="ui-widget-content">
+<p>Samedi</p>
+</div>
 
-    <div id="drag_sunday" class="ui-widget-content">
-    <p>Dimanche</p>
-    </div>
+<div id="drag_sunday" class="ui-widget-content">
+<p>Dimanche</p>
+</div>
+</div>
 
-    <div id="drop_monday" class="ui-widget-header">
-    <p>Drop Monday here</p>
-    </div>
+<div id="sorted_days">
+<div id="drop_monday" class="ui-widget-header">
+<p>Drop Monday here</p>
+</div>
 
-    <div id="drop_tuesday" class="ui-widget-header">
-    <p>Drop Tuesday here</p>
-    </div>
+<div id="drop_tuesday" class="ui-widget-header">
+<p>Drop Tuesday here</p>
+</div>
 
-    <div id="drop_wednesday" class="ui-widget-header">
-    <p>Drop Wednesday here</p>
-    </div>
+<div id="drop_wednesday" class="ui-widget-header">
+<p>Drop Wednesday here</p>
+</div>
 
-    <div id="drop_thursday" class="ui-widget-header">
-    <p>Drop Thursday here</p>
-    </div>
+<div id="drop_thursday" class="ui-widget-header">
+<p>Drop Thursday here</p>
+</div>
 
-    <div id="drop_friday" class="ui-widget-header">
-    <p>Drop Firday here</p>
-    </div>
+<div id="drop_friday" class="ui-widget-header">
+<p>Drop Firday here</p>
+</div>
 
-    <div id="drop_saturday" class="ui-widget-header">
-    <p>Drop Saturday here</p>
-    </div>
+<div id="drop_saturday" class="ui-widget-header">
+<p>Drop Saturday here</p>
+</div>
 
-    <div id="drop_sunday" class="ui-widget-header">
-    <p>Drop Sunday here</p>
-    </div>
-
-    <div class="demo-description">
-    <p>Return the draggable (or it's helper) to its original location when dragging stops with the boolean <code>revert</code> option set on the draggable.</p>
-    </div>
-    </body>
-    </html>
+<div id="drop_sunday" class="ui-widget-header">
+<p>Drop Sunday here</p>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+#game {
+    width:40%;
+}
+#unsorted_days {
+    margin: 0;
+    padding: 0;
+    float: left;
+    background: #999999;
+    width: 200px;
+}
+
+#sorted_days {
+    /* margin settings moved the box*/
+    padding: 0;
+    float: right;
+    background: #888888;
+    width: 200px;
+}

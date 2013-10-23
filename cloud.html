@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Test cloud of elements.</title>
+        <style>
+/* Background and container of the elements. */
+#cloud{
+    background:url('img/cloud.svg');
+    background-size:100% 100%;
+    width:400px;
+    height:300px;
+    position:absolute;
+}
+/* Allows positioning every box inside the cloud. */
+.box{
+    text-align:center;
+    position:relative;
+    height:20px;
+    max-width:100px;
+    border:1px solid #FF0066;
+}
+/* Below are every box with defined positions.*/
+#box1{
+    top:50px;
+    left:200px;
+}
+#box2{
+    top:70px;
+    left:100px;
+}
+#box3{
+    top:70px;
+    left:250px;
+}
+        </style>
+    </head>
+    <body>
+        <h1>Test of a cloud displaying elements like it's bazaar.</h1>
+        <div id="cloud"> 
+            <div id="box1" class="box">Lundi</div>
+            <div id="box2" class="box">Mardi</div>
+            <div id="box3" class="box">Gromanche</div>
+        </div>
+    </body>
+</html>

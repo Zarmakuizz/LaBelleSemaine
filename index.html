@@ -91,6 +91,16 @@ function drop_check(event, ui) {
 
 };
 
+days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+for(var i=0; i<days.length; i++) {
+    console.log(days[i]);
+    $("#unsorted_days").on( "click", "#drag_"+days[i], function() {
+            console.log("click on "+this.id);
+            var day = this.id.replace("drag_", "");
+            document.getElementById("audio_"+day).play();
+            });
+}
+ 
 $( "#drop_monday" ).droppable({
 accept:"#drag_monday",
 activeClass: "ui-state-hover",
@@ -142,30 +152,65 @@ drop: drop_check
 <div id="unsorted_days">
 <div id="drag_monday" class="ui-widget-content">
 <p>Lundi</p>
+<audio id="audio_monday" preload>
+  <source src="sound/01-Lundi.ogg" type="audio/ogg">
+  <source src="sound/01-Lundi.mp3" type="audio/mpeg">
+  Your browser does not support the audio tag.
+</audio>
 </div>
 
 <div id="drag_tuesday" class="ui-widget-content">
 <p>Mardi</p>
+<audio id="audio_tuesday" preload>
+  <source src="sound/02-Mardi.ogg" type="audio/ogg">
+  <source src="sound/02-Mardi.mp3" type="audio/mpeg">
+  Your browser does not support the audio tag.
+</audio>
 </div>
 
 <div id="drag_wednesday" class="ui-widget-content">
 <p>Mercredi</p>
+<audio id="audio_wednesday" preload>
+  <source src="sound/03-Mercredi.ogg" type="audio/ogg">
+  <source src="sound/03-Mercredi.mp3" type="audio/mpeg">
+  Your browser does not support the audio tag.
+</audio>
 </div>
 
 <div id="drag_thursday" class="ui-widget-content">
 <p>Jeudi</p>
+<audio id="audio_thursday" preload>
+  <source src="sound/04-Jeudi.ogg" type="audio/ogg">
+  <source src="sound/04-Jeudi.mp3" type="audio/mpeg">
+  Your browser does not support the audio tag.
+</audio>
 </div>
 
 <div id="drag_friday" class="ui-widget-content">
 <p>Vendredi</p>
+<audio id="audio_friday" preload>
+  <source src="sound/05-Vendredi.ogg" type="audio/ogg">
+  <source src="sound/05-Vendredi.mp3" type="audio/mpeg">
+  Your browser does not support the audio tag.
+</audio>
 </div>
 
 <div id="drag_saturday" class="ui-widget-content">
 <p>Samedi</p>
+<audio id="audio_saturday" preload>
+  <source src="sound/06-Samedi.ogg" type="audio/ogg">
+  <source src="sound/06-Samedi.mp3" type="audio/mpeg">
+  Your browser does not support the audio tag.
+</audio>
 </div>
 
 <div id="drag_sunday" class="ui-widget-content">
 <p>Dimanche</p>
+<audio id="audio_sunday" preload>
+  <source src="sound/07-Dimanche.ogg" type="audio/ogg">
+  <source src="sound/07-Dimanche.mp3" type="audio/mpeg">
+  Your browser does not support the audio tag.
+</audio>
 </div>
 </div>
 

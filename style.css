@@ -2,17 +2,50 @@
     width:40%;
 }
 #unsorted_days {
-    margin: 0;
+    margin: 100px;
     padding: 0;
-    float: left;
     background: #999999;
-    width: 200px;
+    width: 900px;
 }
 
 #sorted_days {
-    /* margin settings moved the box*/
-    padding: 0;
-    float: right;
-    background: #888888;
-    width: 200px;
+    margin:100px;
+    width:900px;
+}
+
+/* The line to be drawed in the background. */
+.line{
+    margin:10px 0;
+    max-width:950px;
+    height:1px;
+	line-height:1px;
+	background-color:#000000;
+	font-size:0px;
+	border:0px;
+	border-collapse:collapse;
+}
+/* For every box over the drawed line*/
+.box{
+    float:left;
+    width:100px;
+    height:60px;
+    margin:0 10px;
+    border:2px solid black;
+    position:relative;
+    top:-35px;
+    background-color:white;
+}
+/* The box for the arrow or triangle icon, so that the line looks more like a timeline. */
+.arrowbox{
+    float:left;
+    margin:10px;
+    max-width:10px;
+    position:relative;
+    top:-20px;
+    background-color:white;
+}
+/* The picture contained in the arrowbox. */
+.arrow{
+    max-width:20px;
+    height:20px;
 }

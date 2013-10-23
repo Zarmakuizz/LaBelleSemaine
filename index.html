@@ -20,129 +20,59 @@
 </style>
 <script>
 $(function() {
+    var days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+
     function randomize(divName)
     {
     var $container = $("#"+divName);
-    
+
     $container.html(shuffle($container.children().get()));
-    
+
     function shuffle(o){
-        for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-        return o;
+    for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
     };
     }
 
-function init() {
+    function reset() {
+        window.location.reload();
+    }
+
     randomize("unsorted_days");
-}
-
-function reset() {
-    window.location.reload();
-    //randomize("unsorted_days");
-    //reset_drag();
-}
-        init();
 
 
+    var correct_days = 0;
 
-        $( "#drag_monday" ).draggable({ revert: "invalid"});
-        $( "#drag_tuesday" ).draggable({ revert: "invalid" });
-        $( "#drag_wednesday" ).draggable({ revert: "invalid" });
-        $( "#drag_thursday" ).draggable({ revert: "invalid" });
-        $( "#drag_friday" ).draggable({ revert: "invalid" });
-        $( "#drag_saturday" ).draggable({ revert: "invalid" });
-        $( "#drag_sunday" ).draggable({ revert: "invalid" });
 
-        var correct_days = 0;
-
-        // Store original position
-        $(".ui-widget-content").data("left", $(".ui-widget-content").position().left).data("top", $(".ui-widget-content").position().top);
-
-        /**
-         * Put back all dragged element to their original position
-         **/
-        function reset_drag() 
-        {
-        $("#drag_monday").animate({"left": $("drag_monday").data("left"), 
-            "top": $("#drag_monday").data("top")});
-        $("#drag_tuesday").animate({"left": $("drag_tuesday").data("left"), 
-                "top": $("#drag_tuesday").data("top")});
-        $("#drag_wednesday").animate({"left": $("drag_wednesday").data("left"), 
-                "top": $("#drag_wednesday").data("top")});
-        $("#drag_thursday").animate({"left": $("drag_thursday").data("left"), 
-                "top": $("#drag_thursday").data("top")});
-        $("#drag_friday").animate({"left": $("drag_friday").data("left"), 
-                "top": $("#drag_friday").data("top")});
-        $("#drag_saturday").animate({"left": $("drag_saturday").data("left"), 
-                "top": $("#drag_saturday").data("top")});
-        $("#drag_sunday").animate({"left": $("drag_sunday").data("left"), 
-                "top": $("#drag_sunday").data("top")});
+    function drop_check(event, ui) {
+        var dropId = $(this).attr("id");
+        var dragId = ui.draggable.attr("id");
+        if(++correct_days == 7) {
+            alert("C'est gagné");
+            correct_days = 0;
+            reset();
         };
-
-
-function drop_check(event, ui) {
-    var dropId = $(this).attr("id");
-    var dragId = ui.draggable.attr("id");
-    if(++correct_days == 7) {
-        alert("C'est gagné");
-        correct_days = 0;
-        reset();
+    
     };
-
-};
-
-days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
-for(var i=0; i<days.length; i++) {
-    console.log(days[i]);
-    $("#unsorted_days").on( "click", "#drag_"+days[i], function() {
-            console.log("click on "+this.id);
-            var day = this.id.replace("drag_", "");
-            document.getElementById("audio_"+day).play();
+    
+    for(var i=0; i<days.length; i++) {
+       // Set revert property when day is dropped in the wrong place
+       $( "#drag_"+days[i] ).draggable({ revert: "invalid"});
+    
+        // Play sound when days are clicked
+        $("#unsorted_days").on( "click", "#drag_"+days[i], function() {
+                var day = this.id.replace("drag_", "");
+                document.getElementById("audio_"+day).play();
+                });
+    
+            $("#drop_"+days[i]).droppable({
+            accept:"#drag_"+days[i],
+            activeClass: "ui-state-hover",
+            hoverClass: "ui-state-active",
+            drop: drop_check
             });
-}
- 
-$( "#drop_monday" ).droppable({
-accept:"#drag_monday",
-activeClass: "ui-state-hover",
-hoverClass: "ui-state-active",
-drop: drop_check
-});
-$( "#drop_tuesday" ).droppable({
-accept:"#drag_tuesday",
-activeClass: "ui-state-hover",
-hoverClass: "ui-state-active",
-drop: drop_check
-});
-$( "#drop_wednesday" ).droppable({
-accept:"#drag_wednesday",
-activeClass: "ui-state-hover",
-hoverClass: "ui-state-active",
-drop: drop_check
-});
-$( "#drop_thursday" ).droppable({
-accept:"#drag_thursday",
-activeClass: "ui-state-hover",
-hoverClass: "ui-state-active",
-drop: drop_check
-});
-$( "#drop_friday" ).droppable({
-accept:"#drag_friday",
-activeClass: "ui-state-hover",
-hoverClass: "ui-state-active",
-drop: drop_check
-});
-$( "#drop_saturday" ).droppable({
-accept:"#drag_saturday",
-activeClass: "ui-state-hover",
-hoverClass: "ui-state-active",
-drop: drop_check
-});
-$( "#drop_sunday" ).droppable({
-accept:"#drag_sunday",
-activeClass: "ui-state-hover",
-hoverClass: "ui-state-active",
-drop: drop_check
-});
+    
+    }
 });
 </script>
 </head>

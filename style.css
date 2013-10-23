@@ -1,12 +1,6 @@
 #game {
     width:40%;
 }
-#unsorted_days {
-    margin: 100px;
-    padding: 0;
-    background: #999999;
-    width: 900px;
-}
 
 #sorted_days {
     margin:100px;
@@ -25,7 +19,7 @@
 	border-collapse:collapse;
 }
 /* For every box over the drawed line*/
-.box{
+.timelinebox{
     float:left;
     width:100px;
     height:60px;
@@ -49,3 +43,54 @@
     max-width:20px;
     height:20px;
 }
+
+
+
+
+
+/* Background and container of the elements. */
+#unsorted_days{
+    background:url('img/cloud.svg');
+    background-size:100% 100%;
+    width:400px;
+    height:300px;
+    position:absolute;
+}
+/* Allows positioning every box inside the cloud. */
+.cloudbox{
+    text-align:center;
+    position:relative;
+    height:20px;
+    max-width:100px;
+    border:1px solid #FF0066;
+}
+/* Below are every box with defined positions.*/
+#drag_monday{
+    top:50px;
+    left:200px;
+}
+#drag_tuesday{
+    top:70px;
+    left:100px;
+}
+#drag_wednesday{
+    top:70px;
+    left:250px;
+}
+#drag_thursday{
+    top:90px;
+    left:250px;
+}
+#drag_friday{
+    top:110px;
+    left:250px;
+}
+#drag_saturday{
+    top:70px;
+    left:200px;
+}
+#drag_sunday{
+    top:70px;
+    left:250px;
+}
+

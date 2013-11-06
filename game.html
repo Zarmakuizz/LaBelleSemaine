@@ -41,12 +41,15 @@ $(function() {
     function drop_check(event, ui) {
         var dropId = $(this).attr("id");
         var dragId = ui.draggable.attr("id");
+
+        // Disable drag when correctly placed
+        $( "#"+dragId ).draggable('disable');
+
         if(++correct_days == 7) {
             alert("C'est gagné");
             correct_days = 0;
             reset();
         };
-    
     };
     
     for(var i=0; i<days.length; i++) {

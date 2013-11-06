@@ -35,6 +35,7 @@
     border-radius:5px;
     z-index:1;
 }
+
 /* The box for the arrow or triangle icon, so that the line looks more like a timeline. */
 .arrowbox{
     float:left;

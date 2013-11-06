@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="jquery_ui/demos/demos.css">
 <link rel="stylesheet" href="css/style.css">
 <script>
+
 $(function() {
     var days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
 
@@ -37,13 +38,16 @@ $(function() {
 
     var correct_days = 0;
 
-
     function drop_check(event, ui) {
         var dropId = $(this).attr("id");
         var dragId = ui.draggable.attr("id");
+        dragElement = ui.draggable; 
 
-        // Disable drag when correctly placed
-        $( "#"+dragId ).draggable('disable');
+        // Detach from original div, and attach to dropped one so that it can
+        // be centered in css
+        $(ui.draggable).detach().css({top: 0,left: 0}).appendTo(this);
+
+        dragElement.draggable('disable');
 
         if(++correct_days == 7) {
             alert("C'est gagné");
@@ -54,7 +58,7 @@ $(function() {
     
     for(var i=0; i<days.length; i++) {
        // Set revert property when day is dropped in the wrong place
-       $( "#drag_"+days[i] ).draggable({ revert: "invalid"});
+       $( "#drag_"+days[i] ).draggable({ revert: "invalid" });
     
         // Play sound when days are clicked
         $("#unsorted_days").on( "click", "#drag_"+days[i], function() {
@@ -62,7 +66,7 @@ $(function() {
                 document.getElementById("audio_"+day).play();
                 });
     
-            $("#drop_"+days[i]).droppable({
+        $("#drop_"+days[i]).droppable({
             accept:"#drag_"+days[i],
             activeClass: "ui-state-hover",
             hoverClass: "ui-state-active",

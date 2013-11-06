@@ -40,6 +40,7 @@
 }
 .timelinebox div{
     margin:2px 1em;
+    background: white !important;
 }
 
 /* The box for the arrow or triangle icon, so that the line looks more like a timeline. */

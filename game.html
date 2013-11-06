@@ -20,12 +20,24 @@ $(function() {
     function randomize(divName)
     {
         var $container = $("#"+divName);
+        children = $container.children().get();
 
-        $container.html(shuffle($container.children().get()));
+        var pos = Array(7);
+        for(var i=0; i<children.length; i++) {
+            pos[i] = Array($(children[i]).css('top'), $(children[i]).css('left'));
+        }
+
+        shuffle(pos);
+
+        for(var i=0; i<pos.length; i++) {
+            $(children[i]).css('top', pos[i][0])
+            $(children[i]).css('left', pos[i][1]);
+        }
+        
 
         function shuffle(o){
-        for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-        return o;
+            for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+            return o;
         };
     }
 
@@ -33,7 +45,7 @@ $(function() {
         window.location.reload();
     }
 
-    //randomize("unsorted_days");
+    randomize("unsorted_days");
 
 
     var correct_days = 0;
@@ -41,6 +53,9 @@ $(function() {
     function move(dragId, dropId) {
         dragElement = $("#"+dragId);
         dropElement = $("#"+dropId);
+        
+        // add class dropped to the div on drop
+        $("#"+dragId).addClass('dropped');
 
         // Detach from original div, and attach to dropped one so that it can
         // be centered in css

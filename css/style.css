@@ -3,14 +3,17 @@
 }
 
 #sorted_days {
-    margin:100px;
+    margin:20px 0;
     width:900px;
+    position:absolute;
+    top:450px;
+    left:0px;
 }
 
 /* The line to be drawed in the background. */
 .line{
-    margin:10px 0;
-    max-width:950px;
+/*    margin:10px 0;*/
+    max-width:930px;
     height:1px;
 	line-height:1px;
 	background-color:#000000;
@@ -21,13 +24,16 @@
 /* For every box over the drawed line*/
 .timelinebox{
     float:left;
-    width:100px;
-    height:60px;
     margin:1em;
+    width:8em;
+    font-size:16px;
+    height:3em;
     border:2px solid black;
     position:relative;
     top:-35px;
     background-color:white;
+    border-radius:5px;
+    z-index:1;
 }
 /* The box for the arrow or triangle icon, so that the line looks more like a timeline. */
 .arrowbox{
@@ -36,58 +42,63 @@
     max-width:10px;
     position:relative;
     top:-20px;
+    left:5px;
     background-color:white;
 }
 /* The picture contained in the arrowbox. */
 .arrow{
-    max-width:20px;
+    max-width:40px;
     height:20px;
 }
 
 
 /* Background and container of the elements. */
 #unsorted_days{
-    background:url('img/cloud.svg');
+    width:600px;
+    height:400px;
+    background-image:url('../img/cloud.svg');
     background-size:100% 100%;
-    width:400px;
-    height:300px;
     position:absolute;
 }
 /* Allows positioning every box inside the cloud. */
 .cloudbox{
     text-align:center;
     position:relative;
-    height:20px;
-    max-width:100px;
+    font-size:16px;
+    padding: 0.5em;
+    max-width:6em;
+    max-height:2em;
     border:1px solid #FF0066;
+    border-radius: 12px;
+    z-index:2;
 }
 /* Below are every box with defined positions.*/
 #drag_monday{
-/*    top:50px;*/
-/*    left:200px;*/
+    top:50px;
+    left:320px;
 }
 #drag_tuesday{
-/*    top:70px;*/
-/*    left:100px;*/
+    top:70px;
+    left:180px;
 }
 #drag_wednesday{
-/*    top:70px;*/
-/*    left:250px;*/
+    top:65px;
+    left:380px;
 }
 #drag_thursday{
-/*    top:90px;*/
-/*    left:250px;*/
+    top:70px;
+    left:100px;
 }
 #drag_friday{
-/*    top:110px;*/
-/*    left:250px;*/
+    top:80px;
+    left:420px;
 }
 #drag_saturday{
-/*    top:70px;*/
-/*    left:200px;*/
+    top:70px;
+    left:60px;
 }
 #drag_sunday{
-/*    top:70px;*/
-/*    left:250px;*/
+    top:00px;
+    left:250px;
 }
 

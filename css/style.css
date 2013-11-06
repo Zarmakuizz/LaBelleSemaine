@@ -33,9 +33,10 @@
     border:2px solid black;
     position:relative;
     top:-35px;
-    background-color:white;
+    background:#EDF6F7 !important;
     border-radius:5px;
     z-index:1;
+    user-select:none;
 }
 /* The box for the arrow or triangle icon, so that the line looks more like a timeline. */
 .arrowbox{
@@ -52,7 +53,6 @@
     max-width:40px;
     height:20px;
 }
-
 
 /* Background and container of the elements. */
 #unsorted_days{

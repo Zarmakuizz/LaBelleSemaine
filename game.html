@@ -38,15 +38,13 @@ $(function() {
 
     var correct_days = 0;
 
-    function drop_check(event, ui) {
-        var dropId = $(this).attr("id");
-        var dragId = ui.draggable.attr("id");
-        dragElement = ui.draggable; 
+    function move(dragId, dropId) {
+        dragElement = $("#"+dragId);
+        dropElement = $("#"+dropId);
 
         // Detach from original div, and attach to dropped one so that it can
         // be centered in css
-        $(ui.draggable).detach().css({top: 0,left: 0}).appendTo(this);
-
+        dragElement.detach().css({top: 0,left: 0}).appendTo(dropElement);
         dragElement.draggable('disable');
 
         if(++correct_days == 7) {
@@ -54,6 +52,11 @@ $(function() {
             correct_days = 0;
             reset();
         };
+    }
+    function drop_check(event, ui) {
+        var dropId = $(this).attr("id");
+        var dragId = ui.draggable.attr("id");
+        move(dragId, dropId);
     };
     
     for(var i=0; i<days.length; i++) {
@@ -73,6 +76,20 @@ $(function() {
             drop: drop_check
             });
     
+    }
+    random_solve(3);
+    function random_solve(nb_div) {
+        var placed = Array(nb_div);
+        for(var i=0; i<nb_div; i++) {
+            var day = parseInt(Math.random()*7);
+            placed[i] = day;
+            while(placed.indexOf(day) > -1) {
+                day = parseInt(Math.random()*7);
+            }
+            placed[i] = day;
+            console.log(placed);
+            move("drag_"+days[day], "drop_"+days[day]);
+        }
     }
 });
 </script>

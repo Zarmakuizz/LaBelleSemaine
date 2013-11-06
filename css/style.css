@@ -5,7 +5,7 @@
 #sorted_days {
     margin:20px 0;
     width:960px;
-    position:absolute;
+    position:relative;
     top:350px;
     left:0px;
 }
@@ -38,6 +38,9 @@
     z-index:1;
     user-select:none;
 }
+.timelinebox div{
+    margin:2px 1em;
+}
 
 /* The box for the arrow or triangle icon, so that the line looks more like a timeline. */
 .arrowbox{
@@ -67,10 +70,11 @@
 /* Allows positioning every box inside the cloud. */
 .cloudbox{
     text-align:center;
-    position:relative;
+    position:absolute;
     font-size:16px;
-    padding: 3px 0;
+    padding: 6px;
     max-width:6em;
+    min-width:4em;
     max-height:2em;
     border:1px solid black;
     border-radius: 10px;
@@ -80,31 +84,31 @@
 }
 /* Below are every box with defined positions.*/
 #drag_monday{
-    top:50px;
-    left:550px;
+    top:35px;
+    left:590px;
 }
 #drag_tuesday{
-    top:60px;
-    left:300px;
+    top:85px;
+    left:280px;
 }
 #drag_wednesday{
-    top:65px;
-    left:680px;
+    top:110px;
+    left:520px;
 }
 #drag_thursday{
-    top:90px;
-    left:90px;
+    top:160px;
+    left:60px;
 }
 #drag_friday{
-    top:70px;
-    left:720px;
+    top:150px;
+    left:760px;
 }
 #drag_saturday{
-    top:40px;
+    top:190px;
     left:300px;
 }
 #drag_sunday{
-    top:-25px;
-    left:500px;
+    top:210px;
+    left:560px;
 }
 

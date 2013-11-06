@@ -23,7 +23,7 @@
     float:left;
     width:100px;
     height:60px;
-    margin:0 10px;
+    margin:1em;
     border:2px solid black;
     position:relative;
     top:-35px;
@@ -45,9 +45,6 @@
 }
 
 
-
-
-
 /* Background and container of the elements. */
 #unsorted_days{
     background:url('img/cloud.svg');
@@ -66,31 +63,31 @@
 }
 /* Below are every box with defined positions.*/
 #drag_monday{
-    top:50px;
-    left:200px;
+/*    top:50px;*/
+/*    left:200px;*/
 }
 #drag_tuesday{
-    top:70px;
-    left:100px;
+/*    top:70px;*/
+/*    left:100px;*/
 }
 #drag_wednesday{
-    top:70px;
-    left:250px;
+/*    top:70px;*/
+/*    left:250px;*/
 }
 #drag_thursday{
-    top:90px;
-    left:250px;
+/*    top:90px;*/
+/*    left:250px;*/
 }
 #drag_friday{
-    top:110px;
-    left:250px;
+/*    top:110px;*/
+/*    left:250px;*/
 }
 #drag_saturday{
-    top:70px;
-    left:200px;
+/*    top:70px;*/
+/*    left:200px;*/
 }
 #drag_sunday{
-    top:70px;
-    left:250px;
+/*    top:70px;*/
+/*    left:250px;*/
 }
 

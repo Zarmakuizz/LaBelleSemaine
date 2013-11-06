@@ -18,21 +18,21 @@ $(function() {
 
     function randomize(divName)
     {
-    var $container = $("#"+divName);
+        var $container = $("#"+divName);
 
-    $container.html(shuffle($container.children().get()));
+        $container.html(shuffle($container.children().get()));
 
-    function shuffle(o){
-    for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-    return o;
-    };
+        function shuffle(o){
+        for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+        return o;
+        };
     }
 
     function reset() {
         window.location.reload();
     }
 
-    randomize("unsorted_days");
+    //randomize("unsorted_days");
 
 
     var correct_days = 0;
@@ -74,7 +74,7 @@ $(function() {
 
 <div id="game">
 <div id="unsorted_days">
-<div id="drag_monday" class="timelinebox ui-widget-content">
+<div id="drag_monday" class="cloudbox ui-widget-content">
 Lundi
 <audio id="audio_monday" preload>
   <source src="sound/01-Lundi.ogg" type="audio/ogg">
@@ -83,7 +83,7 @@ Lundi
 </audio>
 </div>
 
-<div id="drag_tuesday" class="timelinebox ui-widget-content">
+<div id="drag_tuesday" class="cloudbox ui-widget-content">
 <p>Mardi</p>
 <audio id="audio_tuesday" preload>
   <source src="sound/02-Mardi.ogg" type="audio/ogg">
@@ -92,7 +92,7 @@ Lundi
 </audio>
 </div>
 
-<div id="drag_wednesday" class="timelinebox ui-widget-content">
+<div id="drag_wednesday" class="cloudbox ui-widget-content">
 <p>Mercredi</p>
 <audio id="audio_wednesday" preload>
   <source src="sound/03-Mercredi.ogg" type="audio/ogg">
@@ -101,7 +101,7 @@ Lundi
 </audio>
 </div>
 
-<div id="drag_thursday" class="timelinebox ui-widget-content">
+<div id="drag_thursday" class="cloudbox ui-widget-content">
 <p>Jeudi</p>
 <audio id="audio_thursday" preload>
   <source src="sound/04-Jeudi.ogg" type="audio/ogg">
@@ -110,7 +110,7 @@ Lundi
 </audio>
 </div>
 
-<div id="drag_friday" class="timelinebox ui-widget-content">
+<div id="drag_friday" class="cloudbox ui-widget-content">
 <p>Vendredi</p>
 <audio id="audio_friday" preload>
   <source src="sound/05-Vendredi.ogg" type="audio/ogg">
@@ -119,7 +119,7 @@ Lundi
 </audio>
 </div>
 
-<div id="drag_saturday" class="timelinebox ui-widget-content">
+<div id="drag_saturday" class="cloudbox ui-widget-content">
 <p>Samedi</p>
 <audio id="audio_saturday" preload>
   <source src="sound/06-Samedi.ogg" type="audio/ogg">
@@ -128,7 +128,7 @@ Lundi
 </audio>
 </div>
 
-<div id="drag_sunday" class="timelinebox ui-widget-content">
+<div id="drag_sunday" class="cloudbox ui-widget-content">
 <p>Dimanche</p>
 <audio id="audio_sunday" preload>
   <source src="sound/07-Dimanche.ogg" type="audio/ogg">

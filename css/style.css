@@ -33,14 +33,17 @@
     border:2px solid black;
     position:relative;
     top:-35px;
-    background:#EDF6F7 !important;
     border-radius:5px;
     z-index:1;
     user-select:none;
+    background:#EDF6F7;   
 }
-.timelinebox div{
+.timelinebox div, ui-state-disabled{
     margin:2px 1em;
-    background: white !important;
+/*    background-color: #EDF6F7;*/
+    background-color: #00FF0C;
+/*    opacity:0;*/
+    z-index:2;
 }
 
 /* The box for the arrow or triangle icon, so that the line looks more like a timeline. */
@@ -52,6 +55,7 @@
     top:-25px;
     left:5px;
     background-color:white;
+    z-index:0;
 }
 /* The picture contained in the arrowbox. */
 .arrow{

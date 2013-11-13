@@ -56,7 +56,10 @@ $(function() {
 
 
     var correct_days = 0;
-
+    /** happens when the game is won */
+    function when_won(){
+            window.location.href = 'victory.html';
+    }
     function move(dragId, dropId) {
         dragElement = $("#"+dragId);
         dropElement = $("#"+dropId);
@@ -70,7 +73,7 @@ $(function() {
         dragElement.draggable('disable');
 
         if(++correct_days == 7) {
-            window.location.href = 'victory.html';
+            when_won();
         };
     }
     function drop_check(event, ui) {

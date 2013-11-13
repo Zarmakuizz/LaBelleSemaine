@@ -13,14 +13,15 @@
 <link rel="stylesheet" href="jquery_ui/demos/demos.css">
 <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body style="margin:20px auto; text-align:center;">
 
-<h1> La Belle Semaine</h1>
-<button id="easy" onclick="sessionStorage.setItem('difficulty', 4)
+<h1>La Belle Semaine</h1>
+<h2 style="margin:0 0 20px 0;">Un jeu pour apprendre ses jours de la semaine ! </h2>
+<p style=""> Nouveau joueur ? <button id="tutorial" onclick="sessionStorage.setItem('difficulty', 4);sessionStorage.setItem('tutorial', true);window.location.href = 'game.html';">Apprendre à jouer</button> </p>
+<p>Tu sais comment jouer ? Alors choisis ton défi !</p>
+<p><button id="easy" onclick="sessionStorage.setItem('difficulty', 4)
 window.location.href = 'game.html';">Facile</button> 
 <button id="medium" onclick="sessionStorage.setItem('difficulty', 2);window.location.href = 'game.html';">Moyen</button> 
-<button id="hard" onclick="sessionStorage.setItem('difficulty', 0);window.location.href = 'game.html';">Difficile</button> 
-<button id="tutorial" onclick="sessionStorage.setItem('difficulty', 4);sessionStorage.setItem('tutorial',
-true);window.location.href = 'game.html';">Tutoriel</button> 
+<button id="hard" onclick="sessionStorage.setItem('difficulty', 0);window.location.href = 'game.html';">Difficile</button> </p>
 </body>
 </html>

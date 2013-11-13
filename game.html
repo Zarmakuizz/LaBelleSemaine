@@ -88,13 +88,13 @@ $(function() {
         $(this).addClass('drop_here');
         $("#"+day).addClass('drop_here');
 
-        $("#tutorial_text").text("Glisser le jour au bon endroit sur la timeline.");
+        $("#tutorial_text").text("Glisse le jour au bon endroit sur la ligne des jours.");
     };
     function on_drag_stop(event, ui) {
         dragId = $(this).attr("id");
         dragElement = $("#"+dragId);
 
-        $("#tutorial_text").text("Selectionnez un jour dans le nuage");
+        $("#tutorial_text").text("Choisis un jour dans le nuage.");
         console.log("reset");
 
         $(this).removeClass('drop_here');
@@ -153,6 +153,9 @@ $(function() {
 <div id="game">
 <h1> Consigne du jeu </h1>
 <p>Les jours de la semaine sont en désordre dans le nuage. Range-les dans le bon ordre !</p>
+<div id="tutorial" style="visibility:hidden">
+<p>Besoin d'aide ? <span id="tutorial_text">Choisis un jour dans le nuage.</span></p>
+</div>
 <div id="unsorted_days">
     <div id="drag_monday" class="cloudbox ui-widget-content">
     Lundi
@@ -251,9 +254,6 @@ $(function() {
     </div>
 </div>
 
-<div id="tutorial" style="visibility:hidden">
-<p id="tutorial_text">Selectionnez un jour dans le nuage</p>
-</div>
 
 </body>
 </html>

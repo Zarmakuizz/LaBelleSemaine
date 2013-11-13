@@ -60,7 +60,8 @@ $(function() {
     var correct_days = 0;
     /** happens when the game is won */
     function when_won(){
-            window.location.href = 'victory.html';
+            //window.location.href = 'victory.html';
+            show_victory();
     }
     function move(dragId, dropId) {
         dragElement = $("#"+dragId);
@@ -150,6 +151,14 @@ $(function() {
             move("drag_"+days[day], "drop_"+days[day]);
         }
     }
+
+
+    function show_victory() {
+        $( '#dialog-message' ).css("visibility", "visible");
+    $( "#dialog-message" ).dialog({
+    modal: true,
+    });
+    };
 });
 </script>
 </head>
@@ -258,15 +267,18 @@ $(function() {
     <div class="arrowbox"><img src="img/arrow.png" alt="arrow" class="arrow"/></div>
     </div>
 </div>
- <script>
-$(function() {
-$( "#dialog-message" ).dialog({
-modal: true,
-});
-});
-</script>
-<div id="dialog-message">
-<p>lol</p>
+
+<div id="dialog-message" style="visibility:hidden">
+<h1> Victoire ! </h1>
+<p><img src='img/enfants.jpg' /></p>
+<audio id="audio_sunday" autoplay >
+  <source src="sound/semaine-c.ogg" type="audio/ogg">
+  <source src="sound/semaine-c.mp3" type="audio/mpeg">
+  Your browser does not support the audio tag.
+</audio>
+
+<button id="back_to_menu" onclick="window.location.href='index.html';">Retour au menu</button>
+<button id="replay" onclick="window.location.href='game.html'">Rejouer</button>
 </div>
 
 </body>

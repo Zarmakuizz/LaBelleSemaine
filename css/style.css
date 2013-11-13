@@ -1,5 +1,5 @@
 #game {
-    width:40%;
+/*    width:40%;*/
 }
 
 #sorted_days {
@@ -40,7 +40,9 @@
 }
 .timelinebox div, ui-state-disabled{
     margin:2px 1em;
-    background-color: #99FF99;
+    filter:Alpha(Opacity=100) !important;
+    background-color: #DDFFDD;
+    color:#000000;
     z-index:2;
 }
 

@@ -58,13 +58,15 @@ $(function() {
 
 
     var correct_days = 0;
+    
     /** happens when the game is won */
     function when_won(){
             
         $( '#dialog-message' ).css("visibility", "visible");
         $( "#dialog-message" ).dialog({
             modal: true,
-            width:600
+            width:600,
+            closeOnEscape: false
         });
     }
     function move(dragId, dropId) {

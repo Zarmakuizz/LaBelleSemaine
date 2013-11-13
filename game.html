@@ -63,6 +63,7 @@ $(function() {
         $( "#dialog-message" ).css("visibility", "visible");
         $( "#dialog-message" ).dialog({
             modal: true,
+            width:600
         });
         document.getElementById("audio_victory").play();
     }
@@ -261,7 +262,7 @@ $(function() {
     </div>
 </div>
 
-<div id="dialog-message" style="visibility:hidden">
+<div id="dialog-message" style="visibility:hidden; text-align:center;">
 <h1> Victoire ! </h1>
 <p><img src='img/enfants.jpg' /></p>
 <audio id="audio_victory" preload>

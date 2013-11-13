@@ -62,7 +62,6 @@ $(function() {
         dropElement = $("#"+dropId);
         
         // add class dropped to the div on drop
-        //$("#"+dragId).addClass('dropped');
         $("#"+dropId).addClass('dropped');
 
         // Detach from original div, and attach to dropped one so that it can
@@ -80,25 +79,34 @@ $(function() {
         move(dragId, dropId);
     };
     
-    function on_drag(event, ui) {
+    function on_drag_start(event, ui) {
         dragId = $(this).attr("id");
         dragElement = $("#"+dragId);
 
+        day = this.id.replace("drag_", "drop_");
+        console.log(day);
+        $(this).addClass('drop_here');
+        $("#"+day).addClass('drop_here');
+
         $("#tutorial_text").text("Glisser le jour au bon endroit sur la timeline.");
     };
-    function on_reset(event, ui) {
+    function on_drag_stop(event, ui) {
         dragId = $(this).attr("id");
         dragElement = $("#"+dragId);
 
         $("#tutorial_text").text("Selectionnez un jour dans le nuage");
         console.log("reset");
+
+        $(this).removeClass('drop_here');
+        day = this.id.replace("drag_", "drop_");
+        $("#"+day).removeClass('drop_here');
     };
     
     for(var i=0; i<days.length; i++) {
        // Set revert property when day is dropped in the wrong place
        $( "#drag_"+days[i] ).draggable({ revert: "invalid",
-                                         start: on_drag,
-                                         stop: on_reset });
+                                         start: on_drag_start,
+                                         stop: on_drag_stop });
     
         // Play sound when days are clicked
         $("#unsorted_days").on( "click", "#drag_"+days[i], function() {

@@ -120,5 +120,16 @@
 }
 
 p{
-    font-size:12px;
+    font-size:14px;
+}
+button{
+    margin: 0 0 0 5px;
+    font-size:16px;
+/*    max-width:6em;*/
+    min-width:4em;
+    background-color: #FFFFFF; 
+    border-radius: 10px;
+    padding: 5px 14px;
+    border: 2px solid #333328;
+    color: #333 !important;
 }

@@ -137,6 +137,6 @@ button{
     border: 2px solid #333328;
     color: #333 !important;
 }
-.ui-dialog-titlebar-close {
-  visibility: hidden;
+.ui-dialog-titlebar {
+  display:none;
 }

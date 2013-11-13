@@ -101,12 +101,20 @@ $(function() {
         day = this.id.replace("drag_", "drop_");
         $("#"+day).removeClass('drop_here');
     };
+
+    function on_drop_over(event, ui) {
+        $("#tutorial_text").text("Dépose le jour.");
+    }
     
     for(var i=0; i<days.length; i++) {
        // Set revert property when day is dropped in the wrong place
+       if(tuto) {
        $( "#drag_"+days[i] ).draggable({ revert: "invalid",
                                          start: on_drag_start,
                                          stop: on_drag_stop });
+       } else {
+            $( "#drag_"+days[i] ).draggable({ revert: "invalid" });
+       }
     
         // Play sound when days are clicked
         $("#unsorted_days").on( "click", "#drag_"+days[i], function() {
@@ -118,7 +126,8 @@ $(function() {
             accept:"#drag_"+days[i],
             activeClass: "ui-state-hover",
             hoverClass: "ui-state-active",
-            drop: drop_check
+            drop: drop_check,
+            over: on_drop_over
             });
     
     }

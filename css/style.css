@@ -40,10 +40,12 @@
 }
 .timelinebox div, ui-state-disabled{
     margin:2px 1em;
-/*    background-color: #EDF6F7;*/
-    background-color: #00FF0C;
-/*    opacity:0;*/
+    background-color: #99FF99;
     z-index:2;
+}
+
+.dropped{
+    background-color: #00FF0C;
 }
 
 /* The box for the arrow or triangle icon, so that the line looks more like a timeline. */

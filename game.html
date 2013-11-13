@@ -5,6 +5,8 @@
 <title>jQuery UI Droppable - Revert draggable position</title>
 <!--<link rel="stylesheet" href="jquery_ui/themes/base/jquery.ui.all.css">-->
 <script src="jquery_ui/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 <script src="jquery_ui/ui/jquery.ui.core.js"></script>
 <script src="jquery_ui/ui/jquery.ui.widget.js"></script>
 <script src="jquery_ui/ui/jquery.ui.mouse.js"></script>
@@ -247,7 +249,16 @@ $(function() {
     <div class="arrowbox"><img src="img/arrow.png" alt="arrow" class="arrow"/></div>
     </div>
 </div>
-
+ <script>
+$(function() {
+$( "#dialog-message" ).dialog({
+modal: true,
+});
+});
+</script>
+<div id="dialog-message">
+<p>lol</p>
+</div>
 
 </body>
 </html>

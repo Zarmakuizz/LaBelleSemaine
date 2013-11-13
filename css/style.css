@@ -48,6 +48,9 @@
     background-color: #00FF0C;
 }
 
+.drop_here{
+    background-color: purple !important;
+}
 
 /* The box for the arrow or triangle icon, so that the line looks more like a timeline. */
 .arrowbox{

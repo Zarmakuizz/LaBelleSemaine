@@ -83,8 +83,10 @@ $(function() {
         dragId = $(this).attr("id");
         dragElement = $("#"+dragId);
 
-        day = this.id.replace("drag_", "");
-        $("#drop_"+day).addClass('drop-here');
+        day = this.id.replace("drag_", "drop_");
+        console.log(day);
+        $(this).addClass('drop_here');
+        $("#"+day).addClass('drop_here');
 
         $("#tutorial_text").text("Glisser le jour au bon endroit sur la timeline.");
     };
@@ -95,8 +97,9 @@ $(function() {
         $("#tutorial_text").text("Selectionnez un jour dans le nuage");
         console.log("reset");
 
-        day = this.id.replace("drag_", "");
-        $("#drop_"+day).removeClass('drop-here');
+        $(this).removeClass('drop_here');
+        day = this.id.replace("drag_", "drop_");
+        $("#"+day).removeClass('drop_here');
     };
     
     for(var i=0; i<days.length; i++) {

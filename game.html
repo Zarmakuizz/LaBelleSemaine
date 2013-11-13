@@ -15,7 +15,14 @@
 <script>
 
 $(function() {
-    var days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+    days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+    difficulty = sessionStorage.getItem("difficulty");
+    tuto = sessionStorage.getItem("tutorial");
+    sessionStorage.removeItem("tutorial");
+
+    if(tuto) {
+        var $container = $("#tutorial").css('visibility', 'visible');
+    }
 
     function randomize(divName)
     {
@@ -55,7 +62,8 @@ $(function() {
         dropElement = $("#"+dropId);
         
         // add class dropped to the div on drop
-        $("#"+dragId).addClass('dropped');
+        //$("#"+dragId).addClass('dropped');
+        $("#"+dropId).addClass('dropped');
 
         // Detach from original div, and attach to dropped one so that it can
         // be centered in css
@@ -63,20 +71,34 @@ $(function() {
         dragElement.draggable('disable');
 
         if(++correct_days == 7) {
-            alert("C'est gagné");
-            correct_days = 0;
-            reset();
+            window.location.href = 'victory.html';
         };
     }
     function drop_check(event, ui) {
-        var dropId = $(this).attr("id");
-        var dragId = ui.draggable.attr("id");
+        dropId = $(this).attr("id");
+        dragId = ui.draggable.attr("id");
         move(dragId, dropId);
+    };
+    
+    function on_drag(event, ui) {
+        dragId = $(this).attr("id");
+        dragElement = $("#"+dragId);
+
+        $("#tutorial_text").text("Glisser le jour au bon endroit sur la timeline.");
+    };
+    function on_reset(event, ui) {
+        dragId = $(this).attr("id");
+        dragElement = $("#"+dragId);
+
+        $("#tutorial_text").text("Selectionnez un jour dans le nuage");
+        console.log("reset");
     };
     
     for(var i=0; i<days.length; i++) {
        // Set revert property when day is dropped in the wrong place
-       $( "#drag_"+days[i] ).draggable({ revert: "invalid" });
+       $( "#drag_"+days[i] ).draggable({ revert: "invalid",
+                                         start: on_drag,
+                                         stop: on_reset });
     
         // Play sound when days are clicked
         $("#unsorted_days").on( "click", "#drag_"+days[i], function() {
@@ -92,7 +114,7 @@ $(function() {
             });
     
     }
-    random_solve(3);
+    random_solve(difficulty);
     function random_solve(nb_div) {
         var placed = Array(nb_div);
         for(var i=0; i<nb_div; i++) {
@@ -211,5 +233,10 @@ $(function() {
     <div class="arrowbox"><img src="img/arrow.png" alt="arrow" class="arrow"/></div>
     </div>
 </div>
+
+<div id="tutorial" style="visibility:hidden">
+<p id="tutorial_text">Selectionnez un jour dans le nuage</p>
+</div>
+
 </body>
 </html>

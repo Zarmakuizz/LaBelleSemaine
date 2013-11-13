@@ -16,6 +16,7 @@
 
 $(function() {
     var days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+    var difficulty = sessionStorage.getItem("difficulty");
 
     function randomize(divName)
     {
@@ -63,9 +64,10 @@ $(function() {
         dragElement.draggable('disable');
 
         if(++correct_days == 7) {
-            alert("C'est gagné");
-            correct_days = 0;
-            reset();
+            //alert("C'est gagné");
+            window.location.href = 'victory.html';
+            //correct_days = 0;
+            //reset();
         };
     }
     function drop_check(event, ui) {
@@ -92,7 +94,7 @@ $(function() {
             });
     
     }
-    random_solve(3);
+    random_solve(difficulty);
     function random_solve(nb_div) {
         var placed = Array(nb_div);
         for(var i=0; i<nb_div; i++) {

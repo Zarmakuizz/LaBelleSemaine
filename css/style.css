@@ -174,5 +174,5 @@ button{
         font-family: "BV Baton";
         font-style: normal;
         src: url("bvbaton.ttf"); /* if IE */ 
-        src: local("BV Baton"), url("bvbaton.ttf") format("truetype"); /* non-IE */
+        src: local("BV Baton"), url("bvbaton.ttf"); /* non-IE */
 }

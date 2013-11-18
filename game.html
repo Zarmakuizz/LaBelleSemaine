@@ -99,6 +99,7 @@ $(function() {
             dragElement = $("#drag_"+dayName);
             dropElement = $("#drop_"+dayName);
             dragElement.detach().css({top: 0,left: 0}).appendTo(dropElement);
+            document.getElementById("audio_"+dayName).play();
         }
         if(currentClickDay == 7) {
             when_won();

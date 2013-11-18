@@ -17,15 +17,17 @@
 
 $(function() {
     days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+    currentClickDay=0;
     difficulty = sessionStorage.getItem("difficulty");
-    tuto = sessionStorage.getItem("tutorial");
     sessionStorage.removeItem("tutorial");
     font = sessionStorage.getItem('font');
     $( '#body' ).css('font-family', font);
+    console.log('font: ', font);
 
-    if(tuto) {
-        var $container = $("#tutorial").css('visibility', 'visible');
+    if(difficulty == 'hard') {
+        $('#example_days').css('visibility', 'hidden');
     }
+
 
     function randomize(divName)
     {
@@ -70,22 +72,39 @@ $(function() {
         });
         document.getElementById("audio_victory").play();
     }
-    function move(dragId, dropId) {
-        dragElement = $("#"+dragId);
-        dropElement = $("#"+dropId);
-        
-        // add class dropped to the div on drop
-        $("#"+dropId).addClass('dropped');
+    //function move(dragId, dropId) {
+    //    dragElement = $("#"+dragId);
+    //    dropElement = $("#"+dropId);
+    //    
+    //    // add class dropped to the div on drop
+    //    $("#"+dropId).addClass('dropped');
 
-        // Detach from original div, and attach to dropped one so that it can
-        // be centered in css
-        dragElement.detach().css({top: 0,left: 0}).appendTo(dropElement);
-        dragElement.draggable('disable');
+    //    // Detach from original div, and attach to dropped one so that it can
+    //    // be centered in css
+    //    dragElement.detach().css({top: 0,left: 0}).appendTo(dropElement);
+    //    dragElement.draggable('disable');
 
-        if(++correct_days == 7) {
+    //    if(++correct_days == 7) {
+    //        when_won();
+    //    };
+    //}
+
+    function clicked_day(day) {
+        console.log("clicked: " + i);
+        dayName = days[day];
+        if(day == currentClickDay) {
+            currentClickDay++;
+            // Detach from original div, and attach to dropped one so that it can
+            // be centered in css
+            dragElement = $("#drag_"+dayName);
+            dropElement = $("#drop_"+dayName);
+            dragElement.detach().css({top: 0,left: 0}).appendTo(dropElement);
+        }
+        if(currentClickDay == 7) {
             when_won();
-        };
+        }
     }
+
     function drop_check(event, ui) {
         dropId = $(this).attr("id");
         dragId = ui.draggable.attr("id");
@@ -100,13 +119,11 @@ $(function() {
         $(this).addClass('drop_here');
         $("#"+day).addClass('drop_here');
 
-        $("#tutorial_text").text("Glisse le jour au bon endroit sur la ligne des jours.");
     };
     function on_drag_stop(event, ui) {
         dragId = $(this).attr("id");
         dragElement = $("#"+dragId);
 
-        $("#tutorial_text").text("Choisis un jour dans le nuage.");
 
         $(this).removeClass('drop_here');
         day = this.id.replace("drag_", "drop_");
@@ -114,59 +131,70 @@ $(function() {
     };
 
     function on_drop_over(event, ui) {
-        $("#tutorial_text").text("Dépose le jour.");
     }
     
     for(var i=0; i<days.length; i++) {
        // Set revert property when day is dropped in the wrong place
-       if(tuto) {
-       $( "#drag_"+days[i] ).draggable({ revert: "invalid",
-                                         start: on_drag_start,
-                                         stop: on_drag_stop });
-       } else {
-            $( "#drag_"+days[i] ).draggable({ revert: "invalid",
-                                              cursor: "pointer"  });
-       }
-    
+        $("#drag_monday").click(function() {
+          clicked_day(0);
+        });
+        $("#drag_tuesday").click(function() {
+          clicked_day(1);
+        });
+        $("#drag_wednesday").click(function() {
+          clicked_day(2);
+        });
+        $("#drag_thursday").click(function() {
+          clicked_day(3);
+        });
+        $("#drag_friday").click(function() {
+          clicked_day(4);
+        });
+        $("#drag_saturday").click(function() {
+          clicked_day(5);
+        });
+        $("#drag_sunday").click(function() {
+          clicked_day(6);
+        });
+
         // Play sound when days are clicked
         $("#unsorted_days").on( "click", "#drag_"+days[i], function() {
                 var day = this.id.replace("drag_", "");
                 document.getElementById("audio_"+day).play();
                 });
     
-        $("#drop_"+days[i]).droppable({
-            accept:"#drag_"+days[i],
-            activeClass: "ui-state-hover",
-            hoverClass: "ui-state-active",
-            drop: drop_check,
-            over: on_drop_over
-            });
+        //$("#drop_"+days[i]).droppable({
+        //    accept:"#drag_"+days[i],
+        //    activeClass: "ui-state-hover",
+        //    hoverClass: "ui-state-active",
+        //    drop: drop_check,
+        //    over: on_drop_over
+        //    });
     
     }
-    random_solve(difficulty);
-    function random_solve(nb_div) {
-        var placed = Array(nb_div);
-        for(var i=0; i<nb_div; i++) {
-            var day = parseInt(Math.random()*7);
-            placed[i] = day;
-            while(placed.indexOf(day) > -1) {
-                day = parseInt(Math.random()*7);
-            }
-            placed[i] = day;
-            move("drag_"+days[day], "drop_"+days[day]);
-        }
-    }
+    //random_solve(difficulty);
+    //function random_solve(nb_div) {
+    //    var placed = Array(nb_div);
+    //    for(var i=0; i<nb_div; i++) {
+    //        var day = parseInt(Math.random()*7);
+    //        placed[i] = day;
+    //        while(placed.indexOf(day) > -1) {
+    //            day = parseInt(Math.random()*7);
+    //        }
+    //        placed[i] = day;
+    //        move("drag_"+days[day], "drop_"+days[day]);
+    //    }
+    //}
 });
 </script>
 </head>
+
+
 <body id="body">
 
 <div id="game">
 <h1> Consigne du jeu </h1>
 <p>Les jours de la semaine sont en désordre dans le nuage. Range-les dans le bon ordre !</p>
-<div id="tutorial" style="visibility:hidden">
-<p>Besoin d'aide ? <span id="tutorial_text">Choisis un jour dans le nuage.</span></p>
-</div>
 <div id="unsorted_days">
     <div id="drag_monday" class="cloudbox ui-widget-content">
     Lundi

@@ -13,28 +13,39 @@
 <link rel="stylesheet" href="jquery_ui/demos/demos.css">
 <link rel="stylesheet" href="css/style.css">
 <script>
+
+$(function() {
 function change_font(font) {
-    $('#body').css('font-family', font);
+    $('#body').css('font-family', font)
 }
-function select_change() {
-    font = $("#font option:selected").attr("value");
+function get_font() {
+    font = $( "#font" ).val();
+    console.log("font: "+font);
     sessionStorage.setItem('font', font);
-    change_font(font);
+    return font;
 }
+
+$('#font').change(
+    function() {
+    change_font(get_font());
+    })
+$('#body').ready(
+    function() {
+        change_font(get_font());
+    })
+})
 </script>
 </head>
 <body style="margin:20px auto; text-align:center;">
 
 <h1>La Belle Semaine</h1>
 <h2 style="margin:0 0 20px 0;">Un jeu pour apprendre ses jours de la semaine ! </h2>
-<p style=""> Nouveau joueur ? <button id="tutorial" onclick="sessionStorage.setItem('difficulty', 4);sessionStorage.setItem('tutorial', true);window.location.href = 'game.html';">Apprendre à jouer</button> </p>
-<p>Tu sais comment jouer ? Alors choisis ton défi !</p>
-<p><button id="easy" onclick="sessionStorage.setItem('difficulty', 4)
-window.location.href = 'game.html';">Facile</button> 
-<button id="medium" onclick="sessionStorage.setItem('difficulty', 2);window.location.href = 'game.html';">Moyen</button> 
-<button id="hard" onclick="sessionStorage.setItem('difficulty', 0);window.location.href = 'game.html';">Difficile</button> </p>
+<p>Choisis ton défi !</p>
+<p><button id="easy" onclick="sessionStorage.setItem('difficulty',
+'easy');window.location.href = 'game.html';">Facile</button> 
+<button id="hard" onclick="sessionStorage.setItem('difficulty', 'hard');window.location.href = 'game.html';">Difficile</button> </p>
 
-<select id="font" onchange="select_change();">
+<select id="font">
 <option value="GL DancingMen">Baton</option>
 <option value="Arial">Arial</option>
 </select>

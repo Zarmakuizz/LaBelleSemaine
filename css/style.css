@@ -170,3 +170,9 @@ button{
         src: url("gl_dancingmen.ttf"); /* if IE */ 
         src: local("GL DancingMen"), url("gl_dancingmen.ttf") format("truetype"); /* non-IE */
 }
+@font-face {
+        font-family: "BV Baton";
+        font-style: normal;
+        src: url("bvbaton.ttf"); /* if IE */ 
+        src: local("BV Baton"), url("bvbaton.ttf") format("truetype"); /* non-IE */
+}

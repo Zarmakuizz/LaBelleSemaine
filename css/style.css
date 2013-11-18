@@ -6,8 +6,14 @@
     margin:20px 0;
     width:960px;
     position:relative;
-    top:350px;
+/*    top:350px;*/
     left:0px;
+}
+#sorted_days{
+    top:350px;
+}
+#example_days{
+    top:350px;
 }
 
 /* The line to be drawed in the background. */
@@ -22,10 +28,17 @@
 	border-collapse:collapse;
 	position:relative;
 	margin:auto 0;
-	top:-4px;
+/*	top:-4px;*/
 }
+#example_days .line{
+    top:-4px;
+}
+#sorted_days .line{
+    top:+35px;
+}
+
 /* For every box over the drawed line*/
-.timelinebox{
+#sorted_days .timelinebox, #example_days .timelinebox{
     float:left;
     margin:0.5em;
     width:7em;
@@ -39,7 +52,7 @@
     user-select:none;
     background:#EDF6F7;   
 }
-.timelinebox div, ui-state-disabled{
+#sorted_days .timelinebox div, #example_days .timelinebox div, ui-state-disabled{
     margin:2px 1em;
     filter:Alpha(Opacity=100) !important;
     background-color: #DDFFDD;
@@ -47,7 +60,7 @@
     z-index:2;
 }
 
-.dropped{
+#sorted_days .dropped, #example_days .dropped{
     background-color: #00FF0C;
 }
 
@@ -56,7 +69,7 @@
 }
 
 /* The box for the arrow or triangle icon, so that the line looks more like a timeline. */
-.arrowbox{
+#sorted_days .arrowbox, #example_days .arrowbox{
     float:left;
     margin:10px 5px;
     max-width:10px;
@@ -67,7 +80,7 @@
     z-index:0;
 }
 /* The picture contained in the arrowbox. */
-.arrow{
+#sorted_days .arrow, #example_days .arrow{
     max-width:40px;
     height:20px;
 }

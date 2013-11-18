@@ -140,3 +140,17 @@ button{
 .ui-dialog-titlebar {
   display:none;
 }
+
+
+@font-face {
+        font-family: "Arial";
+        font-style: normal;
+        src: url("arial.ttf"); /* if IE */ 
+        src: local("Arial"), url("arial.ttf") format("truetype"); /* non-IE */
+}
+@font-face {
+        font-family: "GL DancingMen";
+        font-style: normal;
+        src: url("gl_dancingmen.ttf"); /* if IE */ 
+        src: local("GL DancingMen"), url("gl_dancingmen.ttf") format("truetype"); /* non-IE */
+}

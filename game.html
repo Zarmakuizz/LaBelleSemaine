@@ -21,6 +21,8 @@ $(function() {
     difficulty = sessionStorage.getItem("difficulty");
     tuto = sessionStorage.getItem("tutorial");
     sessionStorage.removeItem("tutorial");
+    font = sessionStorage.getItem('font');
+    $( '#body' ).css('font-family', font);
 
     if(tuto) {
         var $container = $("#tutorial").css('visibility', 'visible');
@@ -156,7 +158,7 @@ $(function() {
 });
 </script>
 </head>
-<body>
+<body id="body">
 
 <div id="game">
 <h1> Consigne du jeu </h1>

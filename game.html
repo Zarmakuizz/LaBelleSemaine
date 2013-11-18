@@ -3,10 +3,9 @@
 <head>
 <meta charset="utf-8">
 <title>jQuery UI Droppable - Revert draggable position</title>
-<!--<link rel="stylesheet" href="jquery_ui/themes/base/jquery.ui.all.css">-->
+<link rel="stylesheet" href="jquery_ui/themes/base/jquery.ui.all.css">
 <script src="jquery_ui/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 <script src="jquery_ui/ui/jquery.ui.core.js"></script>
 <script src="jquery_ui/ui/jquery.ui.widget.js"></script>
 <script src="jquery_ui/ui/jquery.ui.mouse.js"></script>
@@ -60,12 +59,14 @@ $(function() {
 
 
     var correct_days = 0;
+    
     /** happens when the game is won */
     function when_won(){
         $( "#dialog-message" ).css("visibility", "visible");
         $( "#dialog-message" ).dialog({
             modal: true,
-            width:600
+            width:600,
+            closeOnEscape: false
         });
         document.getElementById("audio_victory").play();
     }
@@ -230,6 +231,55 @@ $(function() {
     </audio>
     </div>
 </div>
+<!--<div height="300"></div>-->
+<!-- -->
+<div id="example_days">
+    <div class="line"></div>
+    <div class="timelinebox ui-widget-header ui-droppable dropped">
+        <p> </p>
+        <div aria-disabled="true" style="top: 0px; left: 0px;" class="cloudbox ui-widget-content ui-draggable ui-draggable-disabled ui-state-disabled">
+        Lundi
+        </div>
+    </div>
+    <div class="timelinebox ui-widget-header ui-droppable dropped">
+        <p> </p>
+        <div aria-disabled="true" style="top: 0px; left: 0px;" class="cloudbox ui-widget-content ui-draggable ui-draggable-disabled ui-state-disabled">
+        Mardi
+        </div>
+    </div>
+    <div class="timelinebox ui-widget-header ui-droppable dropped">
+        <p> </p>
+        <div aria-disabled="true" style="top: 0px; left: 0px;" class="cloudbox ui-widget-content ui-draggable ui-draggable-disabled ui-state-disabled">
+        Mercredi
+        </div>
+    </div>
+    <div class="timelinebox ui-widget-header ui-droppable dropped">
+        <p> </p>
+        <div aria-disabled="true" style="top: 0px; left: 0px;" class="cloudbox ui-widget-content ui-draggable ui-draggable-disabled ui-state-disabled">
+        Jeudi
+        </div>
+    </div>
+    <div class="timelinebox ui-widget-header ui-droppable dropped">
+        <p> </p>
+        <div aria-disabled="true" style="top: 0px; left: 0px;" class="cloudbox ui-widget-content ui-draggable ui-draggable-disabled ui-state-disabled">
+        Vendredi
+        </div>
+    </div>
+    <div class="timelinebox ui-widget-header ui-droppable dropped">
+        <p> </p>
+        <div aria-disabled="true" style="top: 0px; left: 0px;" class="cloudbox ui-widget-content ui-draggable ui-draggable-disabled ui-state-disabled">
+        Samedi
+        </div>
+    </div>
+    <div class="timelinebox ui-widget-header ui-droppable dropped">
+        <p> </p>
+        <div aria-disabled="true" style="top: 0px; left: 0px;" class="cloudbox ui-widget-content ui-draggable ui-draggable-disabled ui-state-disabled">
+        Dimanche
+        </div>
+    </div>
+    <div class="arrowbox"><img src="img/arrow.png" alt="arrow" class="arrow"/></div>
+    </div>
+</div>
 
 <div id="sorted_days">
     <div class="line"></div>
@@ -263,7 +313,6 @@ $(function() {
     <div class="arrowbox"><img src="img/arrow.png" alt="arrow" class="arrow"/></div>
     </div>
 </div>
-
 <div id="dialog-message" style="visibility:hidden; text-align:center;">
 <h1> Victoire ! </h1>
 <p><img src='img/enfants.jpg' /></p>

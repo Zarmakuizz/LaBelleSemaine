@@ -98,8 +98,10 @@ $(function() {
             // be centered in css
             dragElement = $("#drag_"+dayName);
             dropElement = $("#drop_"+dayName);
+            dropElement.addClass('dropped');
             dragElement.detach().css({top: 0,left: 0}).appendTo(dropElement);
             document.getElementById("audio_"+dayName).play();
+            
         }
         if(currentClickDay == 7) {
             when_won();
@@ -260,8 +262,7 @@ $(function() {
     </audio>
     </div>
 </div>
-<!--<div height="300"></div>-->
-<!-- -->
+
 <div id="example_days">
     <div class="line"></div>
     <div class="timelinebox ui-widget-header ui-droppable dropped">
@@ -307,7 +308,6 @@ $(function() {
         </div>
     </div>
     <div class="arrowbox"><img src="img/arrow.png" alt="arrow" class="arrow"/></div>
-    </div>
 </div>
 
 <div id="sorted_days">
@@ -342,17 +342,18 @@ $(function() {
     <div class="arrowbox"><img src="img/arrow.png" alt="arrow" class="arrow"/></div>
     </div>
 </div>
+</div>
 <div id="dialog-message" style="visibility:hidden; text-align:center;">
-<h1> Victoire ! </h1>
-<p><img src='img/enfants.jpg' /></p>
-<audio id="audio_victory" preload>
-  <source src="sound/semaine-c.ogg" type="audio/ogg">
-  <source src="sound/semaine-c.mp3" type="audio/mpeg">
-  Your browser does not support the audio tag.
-</audio>
+    <h1> Victoire ! </h1>
+    <p><img src='img/enfants.jpg' /></p>
+    <audio id="audio_victory" preload>
+      <source src="sound/semaine-c.ogg" type="audio/ogg">
+      <source src="sound/semaine-c.mp3" type="audio/mpeg">
+      Your browser does not support the audio tag.
+    </audio>
 
-<button id="back_to_menu" onclick="window.location.href='index.html';">Retour au menu</button>
-<button id="replay" onclick="window.location.href='game.html'">Rejouer</button>
+    <button id="back_to_menu" onclick="window.location.href='index.html';">Retour au menu</button>
+    <button id="replay" onclick="window.location.href='game.html'">Rejouer</button>
 </div>
 
 </body>

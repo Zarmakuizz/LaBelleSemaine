@@ -162,7 +162,21 @@ button{
 .ui-dialog-titlebar {
   display:none;
 }
-
+#font{
+    border: 2px solid #333328;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    color: #333 !important;
+    font-size:16px;
+    margin: 0 0 0 5px;
+    padding: 5px 5px;
+    
+}
+#font option{
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
 
 @font-face {
         font-family: "Arial";

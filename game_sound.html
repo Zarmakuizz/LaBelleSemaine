@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>La Belle Semaine</title>
+<link rel="stylesheet" href="jquery_ui/themes/base/jquery.ui.all.css">
+<script src="jquery_ui/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script src="jquery_ui/ui/jquery.ui.core.js"></script>
+<script src="jquery_ui/ui/jquery.ui.widget.js"></script>
+<script src="jquery_ui/ui/jquery.ui.mouse.js"></script>
+<script src="jquery_ui/ui/jquery.ui.draggable.js"></script>
+<script src="jquery_ui/ui/jquery.ui.droppable.js"></script>
+<link rel="stylesheet" href="demos.css">
+<link rel="stylesheet" href="css/style.css">
+<script>
+
+$(function() {
+    days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+    currentClickDay=0;
+    difficulty = sessionStorage.getItem("difficulty");
+    sessionStorage.removeItem("tutorial");
+    font = sessionStorage.getItem('font');
+    $( '#body' ).css('font-family', font);
+    $( '#example_days').css('visibility', 'hidden');
+
+    $('*').attr('unselectable','on')
+         .css({'-moz-user-select':'-moz-none',
+               '-moz-user-select':'none',
+               '-o-user-select':'none',
+               '-khtml-user-select':'none', /* you could also put this in a class */
+               '-webkit-user-select':'none',/* and add the CSS class here instead */
+               '-ms-user-select':'none',
+               'user-select':'none'
+         }).bind('selectstart', function(){ return false; });
+
+
+    function shuffle(o){
+        for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+        return o;
+    };
+
+    function randomize(divName)
+    {
+        var $container = $("#"+divName);
+        children = $container.children().get();
+
+        var pos = Array(7);
+        for(var i=0; i<children.length; i++) {
+            pos[i] = Array($(children[i]).css('top'), $(children[i]).css('left'));
+        }
+
+        shuffle(pos);
+
+        for(var i=0; i<pos.length; i++) {
+            $(children[i]).css('top', pos[i][0])
+            $(children[i]).css('left', pos[i][1]);
+        }
+
+
+    }
+
+    function reset() {
+        window.location.reload();
+    }
+
+    randomize("unsorted_days");
+
+
+    days_random = shuffle(days.slice(0));
+    document.getElementById("audio_"+days_random[ currentClickDay ]).play();
+    window.setInterval(say_day, 5000);
+    function say_day() {
+        document.getElementById("audio_"+days_random[ currentClickDay ]).play();
+    }
+
+    /** happens when the game is won */
+    function when_won(){
+        $( "#dialog-message" ).css("visibility", "visible");
+        $( "#dialog-message" ).dialog({
+            modal: true,
+            width:620,
+            closeOnEscape: false
+        });
+        document.getElementById("audio_victory").play();
+    }
+
+    function clicked_day(day) {
+        dayName = days[day];
+        if(dayName == days_random[currentClickDay]) {
+            currentClickDay++;
+
+            console.log(currentClickDay);
+            if(currentClickDay == 7) {
+                when_won();
+            } else {
+                document.getElementById("audio_"+days_random[currentClickDay]).play();
+            }
+            // Detach from original div, and attach to dropped one so that it can
+            // be centered in css
+            dragElement = $("#drag_"+dayName);
+            dropElement = $("#drop_"+dayName);
+            dropElement.addClass('dropped');
+            dragElement.detach().css({top: 0,left: 0}).appendTo(dropElement);
+
+        }
+    }
+
+    function drop_check(event, ui) {
+        dropId = $(this).attr("id");
+        dragId = ui.draggable.attr("id");
+        move(dragId, dropId);
+    };
+
+    function on_drag_start(event, ui) {
+        dragId = $(this).attr("id");
+        dragElement = $("#"+dragId);
+
+        day = this.id.replace("drag_", "drop_");
+        $(this).addClass('drop_here');
+        $("#"+day).addClass('drop_here');
+
+    };
+    function on_drag_stop(event, ui) {
+        dragId = $(this).attr("id");
+        dragElement = $("#"+dragId);
+
+
+        $(this).removeClass('drop_here');
+        day = this.id.replace("drag_", "drop_");
+        $("#"+day).removeClass('drop_here');
+    };
+
+    function on_drop_over(event, ui) {
+    }
+
+    for(var i=0; i<days.length; i++) {
+        $("#drag_monday").click(function() {
+          clicked_day(0);
+        });
+        $("#drag_tuesday").click(function() {
+          clicked_day(1);
+        });
+        $("#drag_wednesday").click(function() {
+          clicked_day(2);
+        });
+        $("#drag_thursday").click(function() {
+          clicked_day(3);
+        });
+        $("#drag_friday").click(function() {
+          clicked_day(4);
+        });
+        $("#drag_saturday").click(function() {
+          clicked_day(5);
+        });
+        $("#drag_sunday").click(function() {
+          clicked_day(6);
+        });
+
+        //// Play sound when days are clicked
+        //$("#unsorted_days").on( "click", "#drag_"+days[i], function() {
+        //        var day = this.id.replace("drag_", "");
+        //        document.getElementById("audio_"+day).play();
+        //        });
+
+
+    }
+});
+</script>
+</head>
+
+
+<body id="body">
+
+<div id="game">
+<h1> Consigne du jeu </h1>
+<p>Ecoute le nom des jours et clique dessus!</p>
+
+<div id="example_days">
+    <div class="line"></div>
+    <div class="timelinebox ui-widget-header ui-droppable dropped">
+        <p> </p>
+        <div aria-disabled="true" style="top: 0px; left: 0px;" class="cloudbox ui-widget-content ui-draggable ui-draggable-disabled ui-state-disabled">
+        Lundi
+        </div>
+    </div>
+    <div class="timelinebox ui-widget-header ui-droppable dropped">
+        <p> </p>
+        <div aria-disabled="true" style="top: 0px; left: 0px;" class="cloudbox ui-widget-content ui-draggable ui-draggable-disabled ui-state-disabled">
+        Mardi
+        </div>
+    </div>
+    <div class="timelinebox ui-widget-header ui-droppable dropped">
+        <p> </p>
+        <div aria-disabled="true" style="top: 0px; left: 0px;" class="cloudbox ui-widget-content ui-draggable ui-draggable-disabled ui-state-disabled">
+        Mercredi
+        </div>
+    </div>
+    <div class="timelinebox ui-widget-header ui-droppable dropped">
+        <p> </p>
+        <div aria-disabled="true" style="top: 0px; left: 0px;" class="cloudbox ui-widget-content ui-draggable ui-draggable-disabled ui-state-disabled">
+        Jeudi
+        </div>
+    </div>
+    <div class="timelinebox ui-widget-header ui-droppable dropped">
+        <p> </p>
+        <div aria-disabled="true" style="top: 0px; left: 0px;" class="cloudbox ui-widget-content ui-draggable ui-draggable-disabled ui-state-disabled">
+        Vendredi
+        </div>
+    </div>
+    <div class="timelinebox ui-widget-header ui-droppable dropped">
+        <p> </p>
+        <div aria-disabled="true" style="top: 0px; left: 0px;" class="cloudbox ui-widget-content ui-draggable ui-draggable-disabled ui-state-disabled">
+        Samedi
+        </div>
+    </div>
+    <div class="timelinebox ui-widget-header ui-droppable dropped">
+        <p> </p>
+        <div aria-disabled="true" style="top: 0px; left: 0px;" class="cloudbox ui-widget-content ui-draggable ui-draggable-disabled ui-state-disabled">
+        Dimanche
+        </div>
+    </div>
+    <div class="arrowbox"><img src="img/arrow.png" alt="arrow" class="arrow"/></div>
+</div>
+<div id="unsorted_days">
+    <div id="drag_monday" class="cloudbox ui-widget-content">
+    Lundi
+    <audio id="audio_monday" preload>
+      <source src="sound/01-Lundi.ogg" type="audio/ogg">
+      <source src="sound/01-Lundi.mp3" type="audio/mpeg">
+      Your browser does not support the audio tag.
+    </audio>
+    </div>
+
+    <div id="drag_tuesday" class="cloudbox ui-widget-content">
+    Mardi
+    <audio id="audio_tuesday" preload>
+      <source src="sound/02-Mardi.ogg" type="audio/ogg">
+      <source src="sound/02-Mardi.mp3" type="audio/mpeg">
+      Your browser does not support the audio tag.
+    </audio>
+    </div>
+
+    <div id="drag_wednesday" class="cloudbox ui-widget-content">
+    Mercredi
+    <audio id="audio_wednesday" preload>
+      <source src="sound/03-Mercredi.ogg" type="audio/ogg">
+      <source src="sound/03-Mercredi.mp3" type="audio/mpeg">
+      Your browser does not support the audio tag.
+    </audio>
+    </div>
+
+    <div id="drag_thursday" class="cloudbox ui-widget-content">
+    Jeudi
+    <audio id="audio_thursday" preload>
+      <source src="sound/04-Jeudi.ogg" type="audio/ogg">
+      <source src="sound/04-Jeudi.mp3" type="audio/mpeg">
+      Your browser does not support the audio tag.
+    </audio>
+    </div>
+
+    <div id="drag_friday" class="cloudbox ui-widget-content">
+    Vendredi
+    <audio id="audio_friday" preload>
+      <source src="sound/05-Vendredi.ogg" type="audio/ogg">
+      <source src="sound/05-Vendredi.mp3" type="audio/mpeg">
+      Your browser does not support the audio tag.
+    </audio>
+    </div>
+
+    <div id="drag_saturday" class="cloudbox ui-widget-content">
+    Samedi
+    <audio id="audio_saturday" preload>
+      <source src="sound/06-Samedi.ogg" type="audio/ogg">
+      <source src="sound/06-Samedi.mp3" type="audio/mpeg">
+      Your browser does not support the audio tag.
+    </audio>
+    </div>
+
+    <div id="drag_sunday" class="cloudbox ui-widget-content">
+    Dimanche
+    <audio id="audio_sunday" preload>
+      <source src="sound/07-Dimanche.ogg" type="audio/ogg">
+      <source src="sound/07-Dimanche.mp3" type="audio/mpeg">
+      Your browser does not support the audio tag.
+    </audio>
+    </div>
+</div>
+
+<div id="sorted_days">
+    <div class="line"></div>
+    <div id="drop_monday" class="timelinebox ui-widget-header">
+    <p> </p>
+    </div>
+
+    <div id="drop_tuesday" class="timelinebox ui-widget-header">
+    <p> </p>
+    </div>
+
+    <div id="drop_wednesday" class="timelinebox ui-widget-header">
+    <p> </p>
+    </div>
+
+    <div id="drop_thursday" class="timelinebox ui-widget-header">
+    <p> </p>
+    </div>
+
+    <div id="drop_friday" class="timelinebox ui-widget-header">
+    <p> </p>
+    </div>
+
+    <div id="drop_saturday" class="timelinebox ui-widget-header">
+    <p> </p>
+    </div>
+
+    <div id="drop_sunday" class="timelinebox ui-widget-header">
+    <p> </p>
+    </div>
+    <div class="arrowbox"><img src="img/arrow.png" alt="arrow" class="arrow"/></div>
+    </div>
+</div>
+</div>
+<div id="dialog-message" style="visibility:hidden; text-align:center;">
+    <h1> Victoire ! </h1>
+    <p><img src='img/enfants.jpg' /></p>
+    <audio id="audio_victory" preload>
+      <source src="sound/semaine-c.ogg" type="audio/ogg">
+      <source src="sound/semaine-c.mp3" type="audio/mpeg">
+      Your browser does not support the audio tag.
+    </audio>
+
+    <button id="back_to_menu" onclick="window.location.href='index.html';">Retour au menu</button>
+    <button id="replay" onclick="window.location.href='game.html'">Rejouer</button>
+</div>
+
+</body>
+</html>
